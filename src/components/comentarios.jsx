@@ -17,7 +17,7 @@ export const Comentarios = ({ onComment }) => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setComentarios(data.data);
+        setComentarios(data.data.reverse());
       } catch (error) {
         console.error("Error fetching comentarios:", error);
       }
@@ -25,6 +25,7 @@ export const Comentarios = ({ onComment }) => {
     onComment(comentarios.length + 1);
     fetchComentarios();
   }, [onComment, comentarios]);
+
   const numberstar = (estrellas) => {
     const star = [];
     for (let i = 0; i < estrellas; i++) {
