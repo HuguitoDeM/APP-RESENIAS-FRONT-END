@@ -13,7 +13,7 @@ export const Rating = ({ onRatingChange }) => {
   const InitialStars = () => {
     const newStars = [];
     for (let i = 0; i < 5; i++) {
-      newStars.push("../../public/star.png");
+      newStars.push("../../star.png");
     }
     setStar(newStars);
   };
@@ -26,32 +26,32 @@ export const Rating = ({ onRatingChange }) => {
     switch (numberStarts) {
       case 1:
         for (let i = 0; i < numberStarts; i++) {
-          replaceStar(i, "../../public/star_complete.png");
+          replaceStar(i, "../../star_complete.png");
         }
         break;
       case 2:
         for (let i = 0; i < numberStarts; i++) {
-          replaceStar(i, "../../public/star_complete.png");
+          replaceStar(i, "../../star_complete.png");
         }
         break;
       case 3:
         for (let i = 0; i < numberStarts; i++) {
-          replaceStar(i, "../../public/star_complete.png");
+          replaceStar(i, "../../star_complete.png");
         }
         break;
       case 4:
         for (let i = 0; i < numberStarts; i++) {
-          replaceStar(i, "../../public/star_complete.png");
+          replaceStar(i, "../../star_complete.png");
         }
         break;
       case 5:
         for (let i = 0; i < numberStarts; i++) {
-          replaceStar(i, "../../public/star_complete.png");
+          replaceStar(i, "../../star_complete.png");
         }
         break;
     }
     for (let i = numberStarts; i < 5; i++) {
-      replaceStar(i, "../../public/star.png");
+      replaceStar(i, "../../star.png");
     }
   }
   return (

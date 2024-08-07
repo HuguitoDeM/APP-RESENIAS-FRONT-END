@@ -28,10 +28,10 @@ export const Comentarios = ({ onComment }) => {
   const numberstar = (estrellas) => {
     const star = [];
     for (let i = 0; i < estrellas; i++) {
-      star.push("../../public/star_complete.png");
+      star.push("../../star_complete.png");
     }
     for (let i = estrellas; i < 5; i++) {
-      star.push("../../public/star.png");
+      star.push("../../star.png");
     }
     return star;
   };
