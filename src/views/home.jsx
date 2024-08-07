@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import Swal from "sweetalert2";
 import ".././App.css";
 import { Comentarios } from "../components/comentarios";
 import { Rating } from "../components/rating";
@@ -19,6 +20,14 @@ export const Home = ({ nombre }) => {
   const handleRatingChange = (newRating) => {
     setRating(newRating);
   };
+  const mostrarAlerta = () => {
+    Swal.fire({
+      title: "¡Listo!",
+      text: "El mensaje ha sido enviado",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
+  };
 
   const handleSubmit = async (event) => {
     if (inputValue.length > 0) {
@@ -32,6 +41,7 @@ export const Home = ({ nombre }) => {
           estrellas: rating,
         }),
       };
+      mostrarAlerta();
       event.preventDefault();
       try {
         const response = await fetch(url, options);

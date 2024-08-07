@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Home } from "./views/home";
 
@@ -8,6 +8,17 @@ function App() {
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (!items) {
+      setSession(items);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(session));
+  }, [session]);
+
   const handleSession = () => {
     if (inputValue.length > 0) {
       setSession(!session);
