@@ -1,18 +1,27 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import ".././App.css";
 import { Comentarios } from "../components/comentarios";
 import { Rating } from "../components/rating";
-export const Home = ({ nombre }) => {
+export const Home = ({ nombres }) => {
   const url = "https://renias--resenias--g97p59w7279j.code.run/api/comentarios";
   const [inputValue, setInputValue] = useState("");
   const [rating, setRating] = useState(0);
   const [comentario, setComentario] = useState(0);
-
+  const [nombre, setnombre] = useState(nombres);
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("name");
+    if (storedName !== null) {
+      setnombre(JSON.parse(storedName));
+    } else {
+      localStorage.setItem("name", JSON.stringify(nombres));
+    }
+  }, [nombres]);
 
   const handleComentarios = (newComentarios) => {
     setComentario(newComentarios);

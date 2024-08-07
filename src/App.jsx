@@ -10,17 +10,16 @@ function App() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("item") === null) {
-      localStorage.setItem("item", true);
-      setSession(true);
-    } else {
-      setSession(localStorage.getItem("item"));
+    const storedItem = localStorage.getItem("SaltarInicio");
+    if (storedItem !== null) {
+      setSession(storedItem);
     }
   }, []);
 
   const handleSession = () => {
     if (inputValue.length > 0) {
       setSession(!session);
+      localStorage.setItem("SaltarInicio", true);
     }
   };
 
@@ -28,7 +27,7 @@ function App() {
     <>
       <div>
         {session ? (
-          <Home nombre={inputValue} />
+          <Home nombres={inputValue} />
         ) : (
           <div className="sessionDiv">
             <label htmlFor="nombre" className="sessionLabel">
