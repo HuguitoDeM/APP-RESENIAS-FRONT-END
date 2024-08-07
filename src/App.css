@@ -265,6 +265,9 @@
     height: 25px;
   }
 
+  .starcomment:hover {
+    cursor: pointer;
+  }
   .starcomment > img {
     width: 25px;
     height: 25px;
