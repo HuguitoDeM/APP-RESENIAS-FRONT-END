@@ -4,20 +4,19 @@ import { Home } from "./views/home";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [session, setSession] = useState(true);
+  const [session, setSession] = useState(false);
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (!items) {
-      setSession(items);
+    if (localStorage.getItem("item") === null) {
+      localStorage.setItem("item", true);
+      setSession(true);
+    } else {
+      setSession(localStorage.getItem("item"));
     }
   }, []);
-  useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(session));
-  }, [session]);
 
   const handleSession = () => {
     if (inputValue.length > 0) {
@@ -29,6 +28,8 @@ function App() {
     <>
       <div>
         {session ? (
+          <Home nombre={inputValue} />
+        ) : (
           <div className="sessionDiv">
             <label htmlFor="nombre" className="sessionLabel">
               Nombre:{" "}
@@ -44,8 +45,6 @@ function App() {
               Ingresar
             </button>
           </div>
-        ) : (
-          <Home nombre={inputValue} />
         )}
       </div>
     </>
