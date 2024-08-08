@@ -55,6 +55,7 @@ export const Home = ({ nombres }) => {
       try {
         const response = await fetch(url, options);
         const data = await response.json();
+        setInputValue("");
         return data;
       } catch (e) {
         return e;

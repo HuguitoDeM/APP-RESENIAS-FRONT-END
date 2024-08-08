@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import Swal from "sweetalert2";
 import ".././App.css";
 import { useEffect, useState } from "react";
 
@@ -26,6 +27,15 @@ export const Comentarios = ({ onComment }) => {
     fetchComentarios();
   }, [onComment, comentarios]);
 
+  const AlertaBorrar = () => {
+    Swal.fire({
+      title: "¡Eliminado!",
+      text: "Mensaje borrado con exito",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
+  };
+
   const numberstar = (estrellas) => {
     const star = [];
     for (let i = 0; i < estrellas; i++) {
@@ -36,6 +46,28 @@ export const Comentarios = ({ onComment }) => {
     }
     return star;
   };
+  function Borrar(id) {
+    fetch(
+      `https://renias--resenias--g97p59w7279j.code.run/api/comentarios/${id}`,
+      { method: "DELETE" }
+    ).then((res) => res.json());
+
+    AlertaBorrar();
+  }
+  const botonDelete = (id) => {
+    return (
+      <button className="botonDelete" onClick={() => Borrar(id)}>
+        <img src="../../eliminar.png" alt="" />
+      </button>
+    );
+  };
+
+  function onFocusDelete(comentario) {
+    let name = localStorage.getItem("name");
+    if (comentario.nombre === JSON.parse(name)) {
+      return botonDelete(comentario._id);
+    }
+  }
 
   useEffect(() => {
     const newStars = comentarios.map((comentario) =>
@@ -63,6 +95,8 @@ export const Comentarios = ({ onComment }) => {
                         <img key={i} src={star} alt="" />
                       </div>
                     ))}
+
+                  {onFocusDelete(comentario)}
                 </div>
                 <p>{comentario.comentarios}</p>
               </div>
